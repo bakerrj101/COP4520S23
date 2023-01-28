@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,10 @@ public class Main {
         }
         long end = System.currentTimeMillis();
         long runtime = end - start;
-        int primesSum = primes.stream().mapToInt(Integer::intValue).sum();
+        BigInteger primesSum = BigInteger.ZERO;
+        for (int i = 0; i < primes.size(); i++) {
+            primesSum = primesSum.add(BigInteger.valueOf(primes.get(i)));
+        }
 
         // Threads are running concurrently, not sequentially
         // Sorting list is needed to print largest 10 numbers in order
